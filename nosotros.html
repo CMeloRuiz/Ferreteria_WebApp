@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Comercializadora Gonzalez | Nosotros</title>
+        <link rel="stylesheet" href="./styles.css">
+        <link rel="stylesheet" href="./nosotros.css">
+        <link rel="icon" href="./Images/favicon.png">
+        <script src="https://kit.fontawesome.com/a7fa5fd2a2.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+		<header>
+			<div class="logo">
+				<a href="./index.html"><img src="./Images/logo.png" alt="logo pricipal"></a>
+			</div>
+			<nav>
+				<ul id="menu-list">
+					<li><a href="./index.html">INICIO</a></li>
+					<li><a href="./products.html">PRODUCTOS</a></li>
+					<li><a href="./nosotros.html">NOSOTROS</a></li>
+					<li><a href="./contacto.html">CONTACTO</a></li>
+				</ul>
+			</nav>
+
+			<div class="search-bar">
+				<input type="text" id="searchInput" placeholder="Buscar producto..." autocomplete="off" spellcheck="false"/>
+				<div id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i></div>
+			</div>
+
+			<div class="search-icon">
+				<i class="fa-solid fa-magnifying-glass" onclick="toggleSearch()"></i>
+			</div>
+			<div class="menu-icon">
+				<i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
+			</div>
+		</header>
+		<script>
+			let menuList = document.getElementById("menu-list");
+			let searchBar = document.querySelector(".search-bar");
+			menuList.style.maxHeight = "0px";
+			searchBar.style.display = "";
+
+			function toggleMenu() {
+				if(menuList.style.maxHeight == "0px") {
+					menuList.style.maxHeight = "300px";
+				} else {
+					menuList.style.maxHeight = "0px";
+				};
+			}	
+
+			function toggleSearch() {
+				if(searchBar.style.display == "") {
+					searchBar.style.display = "flex";
+				} else {
+					searchBar.style.display = "none";
+					searchBar.style.display = "";
+				}
+			}
+		</script>
+
+        <main class="nosotros">
+            <h2 id="nosotros-main-title">Sobre Nosotros</h2>
+            <section class="sobre-nosotros">
+                <p>
+                    Ofrecemos una amplia variedad de productos de ferretería, iluminación, electricidad y más, con el respaldo de las mejores marcas del mercado. Nuestra prioridad es garantizar entregas seguras, atención personalizada y un servicio ágil para cada cliente. Nos destacamos por brindar soluciones confiables para el hogar, la construcción y el sector industrial. La calidad, el compromiso y la confianza son la base de todo lo que hacemos. Trabajamos para ser tu primera opción cuando necesites productos duraderos y un servicio eficiente.
+                </p>
+            </section>
+
+            <section class="mision">
+                <h3>Misión</h3>
+                <p>
+                    Brindar soluciones integrales en ferretería, iluminación y herramientas, garantizando productos de alta calidad, precios competitivos y un servicio excepcional. Estamos comprometidos con satisfacer las necesidades de nuestros clientes, ofreciendo siempre una atención cálida, rápida y eficiente. Trabajamos día a día con responsabilidad para ser una empresa de confianza en nuestra comunidad.
+                </p>
+            </section>
+
+            <section class="vision">
+                <h3>Visión</h3>
+                <p>
+                    Proyectarnos como una empresa sólida y de referencia en la región, ofreciendo cobertura a través de domicilios rápidos y confiables en Bogotá. Queremos seguir creciendo junto a nuestros clientes, innovando constantemente y brindando siempre productos y servicios de calidad.
+                </p>
+            </section>
+
+            <section class="compromiso">
+                <h3>Nuestro Compromiso</h3>
+                <p>
+                    Nos comprometemos a mantener altos estándares de calidad en todo lo que hacemos. Escuchamos activamente a nuestros clientes, buscamos comprender sus necesidades y ofrecerles siempre la mejor opción. Valoramos la honestidad, la puntualidad y el respeto, y cada día nos esforzamos por superar las expectativas de quienes confían en nosotros.
+                </p>
+            </section>
+
+            <section class="valores">
+                <h3>Valores Corporativos</h3>
+                <ul>
+                    <li>Honestidad</li>
+                    <li>Responsabilidad</li>
+                    <li>Servicio al cliente</li>
+                    <li>Compromiso</li>
+                    <li>Respeto</li>
+                    <li>Calidad</li>
+                </ul>
+            </section>
+        </main>
+
+
+        <script>
+            const input = document.getElementById('searchInput');
+            const button = document.getElementById('searchBtn');
+
+            function handleSearch() {
+            const query = input.value.trim();
+            if (query) {
+                window.location.href = `products.html?search=${encodeURIComponent(query)}`;
+            }
+            }
+
+            button.addEventListener('click', handleSearch);
+            input.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+            });
+        </script>
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-item">
+                    <h3>FERRETERIA</h3>
+                    <ul>
+                        <li><a href="./nosotros.html">Nosotros</a></li>
+                        <li><a href="./contacto.html">Formulario de Contacto</a></li>
+                        <li><a href="./index.html#proceso-compra">Proceso de Compra</a></li>
+				    </ul>
+                </div>
+                <div class="footer-item">
+                    <h3>CATEGORIAS</h3>
+                    <ul>
+						<li><a href="./products.html">Todos los productos</a></li>
+						<li><a href="./products.html?categoria=iluminacion">Iluminacion</a></li>
+						<li><a href="./products.html?categoria=ferreteria">Ferreteria</a></li>
+					</ul>
+                </div>
+                <div class="footer-item">
+                    <h3>ENLACES RAPIDOS</h3>
+                    <ul>
+                        <li><a href="./index.html">Inicio</a></li>
+                        <li><a href="./products.html">Productos</a></li>
+                        <li><a href="./nosotros.html">Nosotros</a></li>
+                        <li><a href="./contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-item">
+                    <h3>CONTACTO</h3>
+                    <ul>
+                        <li>Telefono: +57 1234567890</li>
+                        <li>Correo: test@gmail.com</li>
+                    </ul>
+                    <div class="footer-social-media">
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="rights-reserved">
+				<hr width="90%" size="1" style="margin: auto; margin-bottom: 40px;" noshade>
+				<p>©2025-Comercializadora Gonzalez S.A.S. Todos los derechos reservados | Pagina Web Desarrollada por <a href="https://vortexdev.io/" style="color: #fff;" target="_blank">VortexDev</a></p>
+			</div>
+        </footer>
+    </body>
+</html>
