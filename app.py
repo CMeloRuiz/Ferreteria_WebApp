@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS 
 from supabase import create_client, Client
 import os
@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-app = Flask(__name__, static_url_path='', static_folder='.', template_folder='.')
+app = Flask(__name__, static_url_path='', static_folder='static') # Apunta a la nueva carpeta 'static'
 CORS(app)
 
 try:
@@ -23,8 +23,13 @@ except Exception as e:
     print(f"ERROR CRÍTICO: Fallo al inicializar el cliente de Supabase: {e}")
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def serve_index():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/<path:path>')
+def serve_static(path):
+    # Esta ruta manejará todos los otros archivos estáticos (CSS, JS, imágenes)
+    return send_from_directory(app.static_folder, path)
 
 @app.route('/api/products', methods=['GET'])
 def get_products():

@@ -1,8 +1,6 @@
 let productsList = [];
 
-const FLASK_API_BASE_URL = 'http://127.0.0.1:5000'; 
-
-fetch(`${FLASK_API_BASE_URL}/api/products`) 
+fetch('/api/products') 
   .then(response => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
