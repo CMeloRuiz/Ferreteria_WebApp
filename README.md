@@ -1,7 +1,7 @@
 # Proyecto de Catálogo Web para Ferretería 🛠️
 Esta aplicación web full-stack ha sido desarrollada para servir como un escaparate digital y un punto de contacto eficiente para una ferretería. Su objetivo principal es ofrecer al público general una plataforma intuitiva donde puedan explorar el inventario de productos de manera dinámica y actualizada, y facilitar el proceso de solicitud de cotizaciones a través de WhatsApp 💬. Además, integra secciones con información clave de la ferretería, como su ubicación 📍 y datos de contacto.
 
-# Características y Funcionalidades:
+## Características y Funcionalidades:
 
 Catálogo de Productos Dinámico 📦: Los productos se cargan y actualizan directamente desde una base de datos en la nube, garantizando que la información esté siempre al día.
 
@@ -15,7 +15,7 @@ Experiencia Multi-dispositivo 📱💻: Optimizado para ofrecer una visualizaci�
 
 URLs Limpias ✨: Rutas amigables para una mejor usabilidad y optimización web.
 
-# Arquitectura y Tecnologías:
+## Arquitectura y Tecnologías:
 
 Este proyecto demuestra una implementación completa de una aplicación full-stack, integrando las siguientes tecnologías y servicios:
 
@@ -27,5 +27,5 @@ Frontend (UI) 🌐: Desarrollado con HTML5 para la estructura, CSS3 para el esti
 
 Despliegue Continuo (CI/CD) 🚀: La aplicación está desplegada y accesible 24/7 en Render.com, aprovechando su integración con GitHub para actualizaciones automáticas.
 
-# Acceso al Demo en Vivo: 
+## Acceso al Demo en Vivo: 
 https://comercializadora-gonzalez.onrender.com/inicio
