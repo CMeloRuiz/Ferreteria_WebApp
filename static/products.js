@@ -44,4 +44,3 @@ function unifyProducts(arr) {
 
 	return productosUnificados;
 }
-

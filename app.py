@@ -1,54 +1,52 @@
-from flask import Flask, jsonify, send_from_directory
-from flask_cors import CORS 
-from supabase import create_client, Client
 import os
 from dotenv import load_dotenv
+from flask import Flask, jsonify, send_from_directory 
+from flask_cors import CORS
+from supabase import create_client, Client
 
 load_dotenv()
 
-app = Flask(__name__, static_url_path='', static_folder='static') # Apunta a la nueva carpeta 'static'
-CORS(app)
+SUPABASE_URL = os.getenv("SUPABASE_URL")
+SUPABASE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
 
-try:
-    SUPABASE_URL = os.getenv("SUPABASE_URL")
-    SUPABASE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
+supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
-    if not SUPABASE_URL or not SUPABASE_KEY:
-        raise ValueError("Las variables de entorno SUPABASE_URL o SUPABASE_SERVICE_ROLE_KEY no están configuradas.")
+app = Flask(__name__, static_folder='static', static_url_path='') 
 
-    supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
-    print("DEBUG: Cliente de Supabase inicializado correctamente.")
-
-except Exception as e:
-    print(f"ERROR CRÍTICO: Fallo al inicializar el cliente de Supabase: {e}")
-
-@app.route('/')
-def serve_index():
-    return send_from_directory(app.static_folder, 'index.html')
-
-@app.route('/<path:path>')
-def serve_static(path):
-    # Esta ruta manejará todos los otros archivos estáticos (CSS, JS, imágenes)
-    return send_from_directory(app.static_folder, path)
+CORS(app) 
 
 @app.route('/api/products', methods=['GET'])
 def get_products():
-    """
-    Obtiene todos los productos de la base de datos Supabase.
-    """
     try:
-        result = supabase.from_('products').select('*').execute()
-
-        productos = result.data
-
-        if not productos and result.count is not None and result.count > 0:
-            pass
-
-        return jsonify(productos), 200
-
+        response = supabase.from_('products').select('*').execute()
+        products = response.data
+        return jsonify(products)
     except Exception as e:
-        print(f"ERROR EN RUTA /api/products: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/inicio')
+def serve_inicio():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/')
+def serve_root():
+    return send_from_directory(app.static_folder, 'index.html')
+
+@app.route('/nosotros')
+def serve_nosotros():
+    return send_from_directory(app.static_folder, 'nosotros.html')
+
+@app.route('/contacto')
+def serve_contacto():
+    return send_from_directory(app.static_folder, 'contacto.html')
+
+@app.route('/productos')
+def serve_products_page():
+    return send_from_directory(app.static_folder, 'products.html')
+
+@app.route('/<path:path>')
+def serve_static(path):
+    return send_from_directory(app.static_folder, path)
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5000)
